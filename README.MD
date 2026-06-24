@@ -1,4 +1,4 @@
-# 🌏 AWS Multi-Region VPC Peering & Network Setup
+# AWS Multi-Region VPC Peering & Network Setup
 
 > **Learning Journey** | AWS Cloud Networking | DevOps
 
@@ -10,7 +10,7 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
 This project demonstrates how to build a **secure, scalable multi-region AWS architecture** using Amazon VPC, subnets, EC2 instances, and VPC Peering across two AWS regions — **Mumbai (ap-south-1)** and **Tokyo (ap-northeast-1)**.
 
@@ -18,7 +18,13 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 
 ---
 
-## 🏗️ What We Build
+## Architecture Diagram
+
+![Architecture Diagram](docs/Multi-region-VPCPeering-drawio.png)
+
+---
+
+## What We Build
 
 | Component | Details |
 |-----------|---------|
@@ -30,35 +36,7 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 
 ---
 
-## 🗺️ Architecture Diagram
-
-```
-Mumbai Region                          Tokyo Region
-┌─────────────────────┐               ┌──────────────────────────────────────┐
-│  VPCA 192.168.0.0/16│               │  VPCB 10.0.0.0/16                    │
-│                     │               │                                      │
-│  ┌───────────────┐  │               │  ┌──────────────────────────────────┐ │
-│  │subnet1A-Priv  │  │  VPC Peering  │  │ subnet1B-Public 10.0.1.0/24      │ │
-│  │192.168.1.0/24 │◄─┼───────────────┼─►│ LAMP-EC2 + EC2A1 + NAT-GW1 + IGW│ │
-│  │   EC2A1       │  │  (PING/SSH)   │  └──────────────────────────────────┘ │
-│  └───────────────┘  │               │                                      │
-└─────────────────────┘               │  ┌──────────────────────────────────┐ │
-                                      │  │ subnet2B-Private 10.0.2.0/24     │ │
-                                      │  │ EC2B2                            │ │
-                                      │  └──────────────────────────────────┘ │
-                                      │                                      │
-                                      │  ┌──────────────────────────────────┐ │
-                                      │  │ subnet3B-Private 10.0.3.0/24     │ │
-                                      │  │ EC2B3 (NAT → Internet)           │ │
-                                      │  └──────────────────────────────────┘ │
-                                      └──────────────────────────────────────┘
-```
-
-> 📸 **Screenshot:** Add your architecture diagram from the AWS VPC dashboard here.
-
----
-
-## 📋 Prerequisites
+## Prerequisites
 
 - AWS Account with access to **Mumbai** and **Tokyo** regions
 - Basic understanding of VPC, subnets, and routing
@@ -67,7 +45,7 @@ Mumbai Region                          Tokyo Region
 
 ---
 
-## 🚀 Step-by-Step Setup
+## Step-by-Step Setup
 
 ### Step 1: Create VPCs
 
@@ -86,7 +64,7 @@ Mumbai Region                          Tokyo Region
    - **Name:** `RTA`
    - Associate with `subnet1A-Private`
 
-> 📸 **Screenshot:** VPC creation form showing VPCA with CIDR `192.168.0.0/16` | Subnet creation showing `subnet1A-Private`
+> **Screenshot:** VPC creation form showing VPCA with CIDR `192.168.0.0/16` | Subnet creation showing `subnet1A-Private`
 
 ---
 
@@ -111,7 +89,7 @@ Mumbai Region                          Tokyo Region
    - **Destination:** `0.0.0.0/0`
    - **Target:** `IGW1`
 
-> 📸 **Screenshot:** VPCB creation | All three subnets listed | IGW1 attached to VPCB | Route table for subnet1B-Public with IGW route
+> **Screenshot:** VPCB creation | All three subnets listed | IGW1 attached to VPCB | Route table for subnet1B-Public with IGW route
 
 ---
 
@@ -131,7 +109,7 @@ Mumbai Region                          Tokyo Region
 |---------------|--------|------|
 | `EC2A1` | `subnet1A-Private (192.168.1.0/24)` | Private |
 
-> 📸 **Screenshot:** EC2 launch wizard showing `EC2A1` placed in `subnet1A-Private` with no public IP
+> **Screenshot:** EC2 launch wizard showing `EC2A1` placed in `subnet1A-Private` with no public IP
 
 ---
 
@@ -143,9 +121,9 @@ Mumbai Region                          Tokyo Region
 | `EC2B2` | `subnet2B-Private 10.0.2.0/24` | Amazon Linux 2023 |
 | `EC2B3` | `subnet3B-Private 10.0.3.0/24` | Amazon Linux 2023 |
 
-> ⚠️ **Important:** Enable **Auto-assign Public IP** for `EC2B1` (LAMP server) only.
+> **Important:** Enable **Auto-assign Public IP** for `EC2B1` (LAMP server) only.
 
-> 📸 **Screenshot:** EC2B1 network settings with public IP enabled | All three Tokyo instances in running state
+> **Screenshot:** EC2B1 network settings with public IP enabled | All three Tokyo instances in running state
 
 ---
 
@@ -308,7 +286,7 @@ Database connection was successful
 
 ---
 
-## 📊 Network Summary
+## Network Summary
 
 | Resource | Name | CIDR / Config |
 |----------|------|---------------|
@@ -324,7 +302,7 @@ Database connection was successful
 
 ---
 
-## 🔐 Security Group Rules
+## Security Group Rules
 
 | Rule | Protocol | Port | Source/Destination |
 |------|----------|------|--------------------|
@@ -345,7 +323,7 @@ Database connection was successful
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 aws-multi-region-vpc-peering/
@@ -370,7 +348,7 @@ aws-multi-region-vpc-peering/
 
 ---
 
-## 🔗 References
+## References
 
 - [AWS VPC Peering Documentation](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html)
 - [AWS NAT Gateway Guide](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)
@@ -378,7 +356,7 @@ aws-multi-region-vpc-peering/
 
 ---
 
-## 👩‍💻 Author
+## Author
 
 **Sinsha C**  
 AWS & DevOps Learner | Cloud Enthusiast
@@ -388,4 +366,4 @@ AWS & DevOps Learner | Cloud Enthusiast
 
 ---
 
-> 💡 *Built this project as part of my AWS DevOps learning journey. Feel free to fork, star ⭐, and use it as a reference for your own cloud networking labs!*
+> 💡 *Built this project as part of my AWS DevOps learning journey. use it as a reference for your own cloud networking labs!*
