@@ -64,10 +64,11 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
    - **Name:** `RTA`
    - Associate with `subnet1A-Private`
 
-> **Screenshot:** VPC creation form showing VPCA with CIDR `192.168.0.0/16` | Subnet creation showing `subnet1A-Private`
-
-> <img src="screenshots/create-vpc.png" width="450"/><br/>
-> <img src="screenshots/create-subnet.png" width="450"/><br/>
+> **Screenshots — VPC A (Mumbai)**
+>
+> | VPC Creation | Subnet Creation |
+> |---|---|
+> | ![VPCA creation](screenshots/create-vpc.png) | ![subnet1A-Private](screenshots/create-subnet.png) |
 
 ---
 
@@ -225,8 +226,8 @@ ping <EC2A1-Private-IP>
 
 > 📸 **Screenshot:** Successful SSH from EC2B1 → EC2B2 | Successful ping from EC2B2 → EC2A1 in Mumbai
 >
-> <img src="screenshots/ssh-ec2b1-to-ec2b2.png" width="450"/>
-> <img src="screenshots/ping-cross-region-success.png" width="450"/><br/>
+> <img src="screenshots/ssh-ec2b1-to-ec2b2.png" width="600"/>
+> <img src="screenshots/ping-cross-region-success.png" width="600"/><br/>
 
 ---
 
