@@ -149,7 +149,7 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 
 > ✅ This allows EC2B3 to reach the internet (outbound only) — inbound internet blocked.
 
-> 📸 **Screenshot:** NAT Gateway creation with Elastic IP assigned | RTB3 route table showing NAT-GW1 as target
+> **Screenshot:** NAT Gateway creation with Elastic IP assigned | RTB3 route table showing NAT-GW1 as target
 >
 > ![NAT-GW1 creation](screenshots/create-NAT-gw.png)
 > ![RTB3 NAT route](screenshots/add-natgw.png)
@@ -174,7 +174,7 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 2. Go to **VPC** → **Peering Connections**
 3. Select the pending request → **Actions** → **Accept Request**
 
-> 📸 **Screenshot:**  Create Peering Connection | Accepting the request from Tokyo
+> **Screenshot:**  Create Peering Connection | Accepting the request from Tokyo
 >
 > ![Create Peerng Connection](screenshots/create-peering-connection.png)
 > ![Accept request from Tokyo](screenshots/accept-peering.png)
@@ -197,7 +197,7 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 | `192.168.0.0/16` | local |
 | `10.0.2.0/24` | Peering Connection (`pcx-xxxxx`) |
 
-> 📸 **Screenshot:** RTB2 edit routes showing peering connection as target | RTA edit routes showing peering connection as target
+> **Screenshot:** RTB2 edit routes showing peering connection as target | RTA edit routes showing peering connection as target
 >
 > ![RTB2 peering route (Tokyo)](screenshots/add-peering-192.168.1.0.png)
 > ![RTA peering route (Mumbai)](screenshots/add-peering-edit-route.png)
@@ -224,7 +224,7 @@ ping <EC2A1-Private-IP>
 # Expected: 64 bytes from 192.168.1.x: icmp_seq=1 ttl=127 time=127 ms ✅
 ```
 
-> 📸 **Screenshot:** Successful SSH from EC2B1 → EC2B2 | Successful ping from EC2B2 → EC2A1 in Mumbai
+> **Screenshot:** Successful SSH from EC2B1 → EC2B2 | Successful ping from EC2B2 → EC2A1 in Mumbai
 >
 > <img src="screenshots/ssh-ec2b1-to-ec2b2.png" width="600"/>
 > <img src="screenshots/ping-cross-region-success.png" width="600"/><br/>
@@ -242,7 +242,7 @@ ping google.com
 # Expected: replies from 142.250.x.x ✅
 ```
 
-> 📸 **Screenshot:** Ping to google.com succeeding from EC2B3 (private subnet via NAT)
+> **Screenshot:** Ping to google.com succeeding from EC2B3 (private subnet via NAT)
 >
 > ![Ping google.com from EC2B3](screenshots/ping-google.png)
 
@@ -304,7 +304,7 @@ Expected output:
 Database connection was successful
 ```
 
-> 📸 **Screenshot:** Browser showing "Database connection was successful" at your EC2B1 public IP
+> **Screenshot:** Browser showing "Database connection was successful" at your EC2B1 public IP
 >
 > ![Database connection successful](screenshots/lamp-db-success.png)
 
