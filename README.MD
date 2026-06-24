@@ -360,8 +360,9 @@ Database connection was successful
 **Sinsha C**  
 AWS & DevOps Learner | Cloud Enthusiast
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://linkedin.com)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?logo=github)](https://github.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://www.linkedin.com/in/sinshac)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?logo=github)](https://github.com/sinsha-c)
+
 
 ---
 
