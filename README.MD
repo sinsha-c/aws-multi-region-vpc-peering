@@ -65,6 +65,7 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
    - Associate with `subnet1A-Private`
 
 > **Screenshot:** VPC creation form showing VPCA with CIDR `192.168.0.0/16` | Subnet creation showing `subnet1A-Private`
+
 > <img src="screenshots/create-vpc.png" width="450"/><br/>
 > <img src="screenshots/create-subnet.png" width="450"/><br/>
 
@@ -92,9 +93,11 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
    - **Target:** `IGW1`
 
 > **Screenshot:** Create IGW | IGW1 attached to VPCB | Route table for subnet1B-Public with IGW route
+>
 > ![IGW1 attached](screenshots/create-igw1.png)
 > ![IGW1 attached](screenshots/attach-igw-vpc.png)
 > ![RTB1 IGW route](screenshots/add-igw1-vpc.png)
+
 ---
 
 ### Step 2: Launch EC2 Instances
@@ -126,7 +129,9 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 > **Important:** Enable **Auto-assign Public IP** for `EC2B1` (LAMP server) only.
 
 > **Screenshot:** EC2B1 network settings with public IP enabled | All three Tokyo instances in running state
+>
 > ![EC2B1 public IP enabled](screenshots/launch-ec2-vpcb.png)
+
 ---
 
 ### Step 3: Create NAT Gateway
@@ -144,8 +149,10 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 > ✅ This allows EC2B3 to reach the internet (outbound only) — inbound internet blocked.
 
 > 📸 **Screenshot:** NAT Gateway creation with Elastic IP assigned | RTB3 route table showing NAT-GW1 as target
+>
 > ![NAT-GW1 creation](screenshots/create-NAT-gw.png)
 > ![RTB3 NAT route](screenshots/add-natgw.png)
+
 ---
 
 ### Step 4: VPC Peering (Mumbai ↔ Tokyo)
@@ -167,6 +174,7 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 3. Select the pending request → **Actions** → **Accept Request**
 
 > 📸 **Screenshot:**  Create Peering Connection | Accepting the request from Tokyo
+>
 > ![Create Peerng Connection](screenshots/create-peering-connection.png)
 > ![Accept request from Tokyo](screenshots/accept-peering.png)
 
@@ -189,7 +197,7 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 | `10.0.2.0/24` | Peering Connection (`pcx-xxxxx`) |
 
 > 📸 **Screenshot:** RTB2 edit routes showing peering connection as target | RTA edit routes showing peering connection as target
-
+>
 > ![RTB2 peering route (Tokyo)](screenshots/add-peering-192.168.1.0.png)
 > ![RTA peering route (Mumbai)](screenshots/add-peering-edit-routr.png)
 
@@ -217,8 +225,8 @@ ping <EC2A1-Private-IP>
 
 > 📸 **Screenshot:** Successful SSH from EC2B1 → EC2B2 | Successful ping from EC2B2 → EC2A1 in Mumbai
 >
-> ![SSH EC2B1 to EC2B2](screenshots/ssh-ec2b1-to-ec2b2.png)
-> ![Ping EC2A1 from EC2B2](screenshots/ping-cross-region-success.png)
+> <img src="screenshots/ssh-ec2b1-to-ec2b2.png" width="450"/>
+> <img src="screenshots/ping-cross-region-success.png" width="450"/><br/>
 
 ---
 
