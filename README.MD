@@ -95,7 +95,7 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 
 > **Screenshot:** Create IGW | IGW1 attached to VPCB | Route table for subnet1B-Public with IGW route
 >
-> ![IGW1 attached](screenshots/create-igw1.png)
+> ![Create IGW1](screenshots/create-igw1.png)
 > ![IGW1 attached](screenshots/attach-igw-vpc.png)
 > ![RTB1 IGW route](screenshots/add-igw1-vpc.png)
 
