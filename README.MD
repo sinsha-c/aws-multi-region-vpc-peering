@@ -1,4 +1,4 @@
-# AWS Multi-Region VPC Peering & Network Setup
+# AWS Multi-Region VPC Peering, Network Setup & LAMP Stack Deployment
 
 > **Learning Journey** | AWS Cloud Networking | DevOps
 
@@ -65,6 +65,8 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
    - Associate with `subnet1A-Private`
 
 > **Screenshot:** VPC creation form showing VPCA with CIDR `192.168.0.0/16` | Subnet creation showing `subnet1A-Private`
+> <img src="screenshots/create-vpc.png" width="450"/><br/>
+> <img src="screenshots/create-subnet.png" width="450"/><br/>
 
 ---
 
@@ -89,8 +91,10 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
    - **Destination:** `0.0.0.0/0`
    - **Target:** `IGW1`
 
-> **Screenshot:** VPCB creation | All three subnets listed | IGW1 attached to VPCB | Route table for subnet1B-Public with IGW route
-
+> **Screenshot:** Create IGW | IGW1 attached to VPCB | Route table for subnet1B-Public with IGW route
+> ![IGW1 attached](screenshots/create-igw1.png)
+> ![IGW1 attached](screenshots/attach-igw-vpc.png)
+> ![RTB1 IGW route](screenshots/add-igw1-vpc.png)
 ---
 
 ### Step 2: Launch EC2 Instances
@@ -109,8 +113,6 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 |---------------|--------|------|
 | `EC2A1` | `subnet1A-Private (192.168.1.0/24)` | Private |
 
-> **Screenshot:** EC2 launch wizard showing `EC2A1` placed in `subnet1A-Private` with no public IP
-
 ---
 
 #### 2.2 — In VPCB (Tokyo)
@@ -124,7 +126,7 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 > **Important:** Enable **Auto-assign Public IP** for `EC2B1` (LAMP server) only.
 
 > **Screenshot:** EC2B1 network settings with public IP enabled | All three Tokyo instances in running state
-
+> ![EC2B1 public IP enabled](screenshots/launch-ec2-vpcb.png)
 ---
 
 ### Step 3: Create NAT Gateway
@@ -142,7 +144,8 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 > ✅ This allows EC2B3 to reach the internet (outbound only) — inbound internet blocked.
 
 > 📸 **Screenshot:** NAT Gateway creation with Elastic IP assigned | RTB3 route table showing NAT-GW1 as target
-
+> ![NAT-GW1 creation](screenshots/create-NAT-gw.png)
+> ![RTB3 NAT route](screenshots/add-natgw.png)
 ---
 
 ### Step 4: VPC Peering (Mumbai ↔ Tokyo)
@@ -163,7 +166,9 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 2. Go to **VPC** → **Peering Connections**
 3. Select the pending request → **Actions** → **Accept Request**
 
-> 📸 **Screenshot:** Peering connection creation form (requester side) | Pending acceptance status | Accepting the request from Tokyo
+> 📸 **Screenshot:**  Create Peering Connection | Accepting the request from Tokyo
+> ![Create Peerng Connection](screenshots/create-peering-connection.png)
+> ![Accept request from Tokyo](screenshots/accept-peering.png)
 
 ---
 
@@ -184,6 +189,9 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 | `10.0.2.0/24` | Peering Connection (`pcx-xxxxx`) |
 
 > 📸 **Screenshot:** RTB2 edit routes showing peering connection as target | RTA edit routes showing peering connection as target
+
+> ![RTB2 peering route (Tokyo)](screenshots/add-peering-192.168.1.0.png)
+> ![RTA peering route (Mumbai)](screenshots/add-peering-edit-routr.png)
 
 ---
 
@@ -208,6 +216,9 @@ ping <EC2A1-Private-IP>
 ```
 
 > 📸 **Screenshot:** Successful SSH from EC2B1 → EC2B2 | Successful ping from EC2B2 → EC2A1 in Mumbai
+>
+> ![SSH EC2B1 to EC2B2](screenshots/ssh-ec2b1-to-ec2b2.png)
+> ![Ping EC2A1 from EC2B2](screenshots/ping-cross-region-success.png)
 
 ---
 
@@ -223,6 +234,8 @@ ping google.com
 ```
 
 > 📸 **Screenshot:** Ping to google.com succeeding from EC2B3 (private subnet via NAT)
+>
+> ![Ping google.com from EC2B3](screenshots/ping-google.png)
 
 ---
 
@@ -283,6 +296,8 @@ Database connection was successful
 ```
 
 > 📸 **Screenshot:** Browser showing "Database connection was successful" at your EC2B1 public IP
+>
+> ![Database connection successful](screenshots/lamp-db-success.png)
 
 ---
 
@@ -320,31 +335,6 @@ Database connection was successful
 - Using **NAT Gateway** to allow private instances to reach the internet (outbound only)
 - Installing a **LAMP stack** on Ubuntu EC2 and verifying DB connectivity
 - Understanding **security group** rules for SSH, ICMP, and HTTP
-
----
-
-## Project Structure
-
-```
-aws-multi-region-vpc-peering/
-├── README.md
-└── screenshots/
-    ├── 01-vpca-creation.png
-    ├── 02-subnet1a-private.png
-    ├── 03-vpcb-creation.png
-    ├── 04-tokyo-subnets.png
-    ├── 05-igw1-attached.png
-    ├── 06-ec2-instances.png
-    ├── 07-nat-gateway.png
-    ├── 08-rtb3-nat-route.png
-    ├── 09-peering-creation.png
-    ├── 10-peering-accepted.png
-    ├── 11-rtb2-peering-route.png
-    ├── 12-rta-peering-route.png
-    ├── 13-ping-success-cross-region.png
-    ├── 14-nat-ping-google.png
-    └── 15-lamp-db-success.png
-```
 
 ---
 
