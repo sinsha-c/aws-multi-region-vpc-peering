@@ -200,7 +200,7 @@ This was built as part of my AWS DevOps learning journey to understand real-worl
 > 📸 **Screenshot:** RTB2 edit routes showing peering connection as target | RTA edit routes showing peering connection as target
 >
 > ![RTB2 peering route (Tokyo)](screenshots/add-peering-192.168.1.0.png)
-> ![RTA peering route (Mumbai)](screenshots/add-peering-edit-routr.png)
+> ![RTA peering route (Mumbai)](screenshots/add-peering-edit-route.png)
 
 ---
 
